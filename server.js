@@ -9,7 +9,7 @@ const port = process.env.PORT || 3000;
 // PostgreSQL configuration
 const pgPool = new Pool({
   user: process.env.PG_USER,
-  host: process.env.PG_HOST,
+  host: process.env.PG_HOST || 'postgresql',
   database: process.env.PG_DATABASE,
   password: process.env.PG_PASSWORD,
   port: process.env.PG_PORT || 5432,
@@ -17,9 +17,9 @@ const pgPool = new Pool({
 
 // Redis configuration
 const redisClient = redis.createClient({
-  host: process.env.REDIS_HOST || 'localhost',
+  host: process.env.REDIS_HOST || 'redis',
   port: process.env.REDIS_PORT || 6379,
-  password: process.env.REDIS_PASSWORD || 'password',
+  password: process.env.REDIS_PASSWORD,
 });
 
 async function connectToDatabase() {
