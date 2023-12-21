@@ -33,6 +33,10 @@ async function connectToDatabase() {
   }
 }
 
+connectToDatabase().catch(error => {
+  console.error('Error:', error.message);
+});
+
 redisClient.on('connect', () => {
   console.log('Connected to Redis');
 });
