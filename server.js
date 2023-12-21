@@ -22,13 +22,16 @@ const redisClient = redis.createClient({
   password: process.env.REDIS_PASSWORD || 'password',
 });
 
-pgPool.on('connect',() => {
-  console.log('Connected to Postgres DB');
-});
-
-pgPool.on('error',(pgerr) => {
-  console.log('Postgres DB Connection Error:', pgerr);
-});
+async function connectToDatabase() {
+  try {
+    const client = await pgPool.connect();
+    console.log('Connected to database successfully');
+    client.release();
+  } catch (error) {
+    console.error('Failed to connect to the database', error);
+    throw new Error('Database connection failed');
+  }
+}
 
 redisClient.on('connect', () => {
   console.log('Connected to Redis');
