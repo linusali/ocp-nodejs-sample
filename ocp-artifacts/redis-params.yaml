@@ -1,0 +1,6 @@
+MEMORY_LIMIT: 512Mi
+REDIS_SERVICE_NAME: redis
+REDIS_VERSION: latest
+STORAGE_CLASS_NAME: ocs-storagecluster-ceph-rbd
+VOLUME_CAPACITY: 1Gi
+NAMESPACE: openshift
